@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>SkyPuff — Bounce. Boost. Reach the Stars.</title>
+  <meta name="description" content="SkyPuff — a mobile-first endless vertical jumper by Zycon Studios." />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, viewport-fit=cover" />
+  <meta name="theme-color" content="#8fd3ff" />
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div id="app">
+    <canvas id="game-canvas"></canvas>
+
+    <!-- In-game HUD -->
+    <div id="hud" class="hidden safe-area">
+      <div class="hud-row">
+        <div class="hud-stat">
+          <span class="hud-label">HEIGHT</span>
+          <span id="hud-height" class="hud-value">0m</span>
+        </div>
+        <div class="hud-stat">
+          <span class="hud-label">BEST</span>
+          <span id="hud-best" class="hud-value">0m</span>
+        </div>
+        <div class="hud-stat">
+          <span class="hud-label">&#11088;</span>
+          <span id="hud-stars" class="hud-value">0</span>
+        </div>
+        <button id="btn-pause" class="icon-btn" aria-label="Pause">&#10074;&#10074;</button>
+      </div>
+    </div>
+
+    <!-- Start / Menu screen -->
+    <section id="menu-screen" class="screen safe-area">
+      <div class="menu-content">
+        <h1 class="title">SkyPuff</h1>
+        <p class="tagline">Bounce. Boost. Reach the stars.</p>
+        <div class="menu-stats">
+          <div><span class="stat-label">BEST</span><span id="menu-best" class="stat-value">0m</span></div>
+          <div><span class="stat-label">&#11088;</span><span id="menu-stars" class="stat-value">0</span></div>
+        </div>
+        <button id="btn-play" class="btn btn-primary">PLAY</button>
+        <button id="btn-skins" class="btn btn-secondary">SKINS</button>
+        <button id="btn-settings" class="icon-btn settings-icon" aria-label="Settings">&#9881;&#65039;</button>
+        <footer class="footer">Zycon Studios</footer>
+      </div>
+    </section>
+
+    <!-- Pause overlay -->
+    <section id="pause-screen" class="screen hidden safe-area">
+      <div class="menu-content">
+        <h2 class="title small">PAUSED</h2>
+        <button id="btn-resume" class="btn btn-primary">RESUME</button>
+        <button id="btn-restart-from-pause" class="btn btn-secondary">RESTART</button>
+        <button id="btn-quit-to-menu" class="btn btn-ghost">QUIT TO MENU</button>
+      </div>
+    </section>
+
+    <!-- Game Over screen -->
+    <section id="gameover-screen" class="screen hidden safe-area">
+      <div class="menu-content">
+        <h2 class="title small">SkyPuff</h2>
+        <div class="go-stats">
+          <div><span class="stat-label">HEIGHT</span><span id="go-height" class="stat-value">0m</span></div>
+          <div><span class="stat-label">BEST</span><span id="go-best" class="stat-value">0m</span></div>
+          <div><span class="stat-label">&#11088; STARS</span><span id="go-stars" class="stat-value">0</span></div>
+          <div><span class="stat-label">PERFECTS</span><span id="go-perfects" class="stat-value">0</span></div>
+        </div>
+        <p id="go-hint" class="go-hint">One more run — you can get higher!</p>
+        <button id="btn-play-again" class="btn btn-primary">PLAY AGAIN</button>
+        <button id="btn-share" class="btn btn-secondary">SHARE</button>
+        <button id="btn-gameover-skins" class="btn btn-ghost">SKINS</button>
+      </div>
+    </section>
+
+    <!-- Skins screen -->
+    <section id="skins-screen" class="screen hidden safe-area">
+      <div class="menu-content">
+        <h2 class="title small">SKINS</h2>
+        <div class="skins-stars"><span class="stat-label">&#11088;</span><span id="skins-stars" class="stat-value">0</span></div>
+        <div id="skins-list" class="skins-list"></div>
+        <button id="btn-skins-back" class="btn btn-secondary">BACK</button>
+      </div>
+    </section>
+
+    <!-- Settings modal -->
+    <section id="settings-screen" class="screen hidden safe-area">
+      <div class="menu-content">
+        <h2 class="title small">SETTINGS</h2>
+        <label class="toggle-row"><span>Sound Effects</span><input type="checkbox" id="sfx-toggle" /></label>
+        <label class="toggle-row"><span>Music</span><input type="checkbox" id="music-toggle" /></label>
+        <button id="btn-settings-close" class="btn btn-primary">CLOSE</button>
+      </div>
+    </section>
+
+    <!-- Tutorial -->
+    <div id="tutorial-overlay" class="hidden">
+      <p class="tutorial-text">&#8592; DRAG TO MOVE &#8594;</p>
+    </div>
+  </div>
+
+  <script type="module">
+    import { Game } from './src/game.js';
+    window.addEventListener('DOMContentLoaded', () => {
+      window.__skypuff = new Game();
+    });
+  </script>
+</body>
+</html>
