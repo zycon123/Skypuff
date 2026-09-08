@@ -56,10 +56,10 @@ export class World {
     }
 
     generatePlatforms(playerY, screenWidth) {
-        const height = Math.max(0, -this.lastGeneratedY / 10);
-        const difficulty = this.getDifficulty(height);
-        
         while (this.lastGeneratedY > playerY - 800) {
+            const height = Math.max(0, -this.lastGeneratedY / 10);
+            const difficulty = this.getDifficulty(height);
+            
             const gap = this.minGapY + this.rng() * (this.maxGapY - this.minGapY);
             this.lastGeneratedY -= gap;
             

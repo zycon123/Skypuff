@@ -156,8 +156,16 @@ class Game {
         this.trail = [];
         this.input.reset();
         this.input.enabled = true;
+        
+        this.lastMsg50 = false;
+        this.lastMsg20 = false;
+        this.lastMsgClose = false;
+        this.newBestShown = false;
+        this.closeCallTriggered = false;
 
-        this.world.platforms.push(new Platform(this.renderer.width / 2, this.player.y + 50, 'normal', 100));
+        const startPlatform = new Platform(this.renderer.width / 2, this.player.y + 50, 'normal', 100);
+        startPlatform.setBaseX(this.renderer.width / 2);
+        this.world.platforms.push(startPlatform);
         this.world.lastGeneratedY = this.player.y;
 
         if (!this.storage.get('tutorialCompleted')) {
@@ -345,11 +353,10 @@ class Game {
         const diff = best - heightM;
         
         if (best > 0 && diff > 0 && diff <= 50) {
-            const msgArea = document.getElementById('message-area');
-            if (diff === 50 && !this.lastMsg50) {
+            if (diff >= 45 && diff <= 50 && !this.lastMsg50) {
                 this.showMessage('50m TO YOUR BEST!');
                 this.lastMsg50 = true;
-            } else if (diff === 20 && !this.lastMsg20) {
+            } else if (diff >= 15 && diff <= 20 && !this.lastMsg20) {
                 this.showMessage('20m TO YOUR BEST!');
                 this.lastMsg20 = true;
             } else if (diff <= 5 && !this.lastMsgClose) {
