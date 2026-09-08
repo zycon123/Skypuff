@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>SkyPuff - Bounce. Boost. Reach the stars.</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="game-container">
+        <canvas id="game-canvas"></canvas>
+
+        <!-- UI Overlay -->
+        <div id="ui-overlay">
+            <!-- Menu Screen -->
+            <div id="menu-screen" class="screen active">
+                <div class="menu-content">
+                    <h1 class="game-title">SKYPUFF</h1>
+                    <div class="puff-preview">
+                        <canvas id="menu-puff-canvas" width="120" height="120"></canvas>
+                    </div>
+                    <p class="tagline">BOUNCE. BOOST. REACH THE STARS.</p>
+                    <div class="menu-stats">
+                        <div class="stat">
+                            <span class="stat-label">BEST</span>
+                            <span class="stat-value" id="menu-best">0m</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-label">⭐</span>
+                            <span class="stat-value" id="menu-stars">0</span>
+                        </div>
+                    </div>
+                    <button id="play-btn" class="btn btn-primary">PLAY</button>
+                    <button id="skins-btn" class="btn btn-secondary">SKINS</button>
+                    <button id="settings-btn" class="btn btn-icon">⚙️</button>
+                </div>
+                <footer class="footer">Zycon Studios</footer>
+            </div>
+
+            <!-- Game HUD -->
+            <div id="game-hud" class="screen">
+                <div class="hud-top">
+                    <div class="hud-left">
+                        <div id="height-display">0m</div>
+                        <div id="best-display">BEST 0m</div>
+                    </div>
+                    <div class="hud-right">
+                        <div id="stars-display">⭐ 0</div>
+                        <button id="pause-btn" class="btn btn-small">⏸</button>
+                    </div>
+                </div>
+                <div id="message-area"></div>
+                <div id="tutorial-overlay" class="hidden">
+                    <div class="tutorial-text">← DRAG TO MOVE →</div>
+                    <div class="tutorial-text">LAND ON PLATFORMS!</div>
+                </div>
+            </div>
+
+            <!-- Pause Screen -->
+            <div id="pause-screen" class="screen">
+                <div class="menu-content">
+                    <h2>PAUSED</h2>
+                    <button id="resume-btn" class="btn btn-primary">RESUME</button>
+                    <button id="restart-btn" class="btn btn-secondary">RESTART</button>
+                    <button id="menu-btn" class="btn btn-secondary">MENU</button>
+                </div>
+            </div>
+
+            <!-- Game Over Screen -->
+            <div id="gameover-screen" class="screen">
+                <div class="menu-content">
+                    <h2>SKYPUFF</h2>
+                    <div class="gameover-stats">
+                        <div class="stat-row">
+                            <span>HEIGHT</span>
+                            <span id="final-height">0m</span>
+                        </div>
+                        <div class="stat-row">
+                            <span>BEST</span>
+                            <span id="final-best">0m</span>
+                        </div>
+                        <div class="stat-row">
+                            <span>⭐ STARS</span>
+                            <span id="final-stars">0</span>
+                        </div>
+                        <div class="stat-row">
+                            <span>PERFECTS</span>
+                            <span id="final-perfects">0</span>
+                        </div>
+                    </div>
+                    <div id="motivation-text"></div>
+                    <button id="play-again-btn" class="btn btn-primary">PLAY AGAIN</button>
+                    <button id="share-btn" class="btn btn-secondary">SHARE</button>
+                    <button id="skins-btn-2" class="btn btn-secondary">SKINS</button>
+                </div>
+            </div>
+
+            <!-- Skins Screen -->
+            <div id="skins-screen" class="screen">
+                <div class="menu-content">
+                    <h2>SKINS</h2>
+                    <div class="stars-balance">⭐ <span id="skins-stars">0</span></div>
+                    <div id="skins-grid" class="skins-grid"></div>
+                    <button id="back-btn" class="btn btn-secondary">BACK</button>
+                </div>
+            </div>
+
+            <!-- Settings Modal -->
+            <div id="settings-modal" class="modal hidden">
+                <div class="modal-content">
+                    <h3>SETTINGS</h3>
+                    <label class="setting-item">
+                        <span>Sound FX</span>
+                        <input type="checkbox" id="sfx-toggle" checked>
+                    </label>
+                    <label class="setting-item">
+                        <span>Music</span>
+                        <input type="checkbox" id="music-toggle" checked>
+                    </label>
+                    <button id="close-settings" class="btn btn-primary">CLOSE</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="module" src="src/game.js"></script>
+</body>
+</html>
